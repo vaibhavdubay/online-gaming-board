@@ -1,9 +1,13 @@
 {
   "root": true,
-  "ignorePatterns": ["projects/**/*"],
+  "ignorePatterns": [
+    "projects/**/*"
+  ],
   "overrides": [
     {
-      "files": ["*.ts"],
+      "files": [
+        "*.ts"
+      ],
       "extends": [
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
@@ -13,14 +17,15 @@
       "rules": {
         "@angular-eslint/component-max-inline-declarations": [
           "error",
-          { "template": 3 }
+          {
+            "template": 3
+          }
         ],
         "@angular-eslint/no-host-metadata-property": "error",
         "@angular-eslint/no-input-rename": "error",
         "@angular-eslint/no-output-on-prefix": "error",
         "@angular-eslint/no-output-rename": "error",
         "@angular-eslint/no-pipe-impure": "error",
-        "@angular-eslint/no-template-call-expression": "error",
         "@angular-eslint/use-lifecycle-interface": "error",
         "@angular-eslint/use-pipe-transform-interface": "error",
         "@angular-eslint/no-conflicting-lifecycle": "error",
@@ -29,24 +34,33 @@
         "@angular-eslint/no-outputs-metadata-property": "error",
         "@angular-eslint/no-output-native": "error",
         "@angular-eslint/use-component-view-encapsulation": "error",
-        "@angular-eslint/use-pipe-decorator": "error",
-
-        // Additional Angular rules and TypeScript rules
         "@angular-eslint/component-selector": [
           "error",
-          { "type": "element", "prefix": "app", "style": "kebab-case" }
+          {
+            "type": "element",
+            "prefix": "app",
+            "style": "kebab-case"
+          }
         ],
         "@angular-eslint/directive-selector": [
           "error",
-          { "type": "attribute", "prefix": "app", "style": "camelCase" }
+          {
+            "type": "attribute",
+            "prefix": "app",
+            "style": "camelCase"
+          }
         ],
         "@typescript-eslint/explicit-function-return-type": [
           "error",
-          { "allowExpressions": true }
+          {
+            "allowExpressions": true
+          }
         ],
         "@typescript-eslint/explicit-member-accessibility": [
           "error",
-          { "accessibility": "explicit" }
+          {
+            "accessibility": "explicit"
+          }
         ],
         "@typescript-eslint/no-explicit-any": "error",
         "@typescript-eslint/no-non-null-assertion": "error",
@@ -63,7 +77,13 @@
         "@typescript-eslint/no-unnecessary-type-arguments": "warn",
         "no-magic-numbers": [
           "error",
-          { "ignore": [0, 1], "ignoreArrayIndexes": true }
+          {
+            "ignore": [
+              0,
+              1
+            ],
+            "ignoreArrayIndexes": true
+          }
         ],
         "prefer-const": "error",
         "prefer-template": "error",
@@ -75,12 +95,22 @@
       }
     },
     {
-      "files": ["*.html"],
+      "files": [
+        "*.html"
+      ],
       "extends": [
         "plugin:@angular-eslint/template/recommended",
         "plugin:@angular-eslint/template/accessibility"
       ],
       "rules": {}
+    },
+    {
+      "files": [
+        "*.ts"
+      ],
+      "extends": [
+        "plugin:@ngrx/all-requiring-type-checking"
+      ]
     }
   ]
 }
