@@ -1,13 +1,13 @@
 {
   "root": true,
-  "ignorePatterns": [
-    "projects/**/*"
-  ],
+  "ignorePatterns": ["projects/**/*"],
   "overrides": [
     {
-      "files": [
-        "*.ts"
-      ],
+      "files": ["*.ts"],
+      "parserOptions": {
+        "project": ["tsconfig.json"],
+        "createDefaultProgram": true
+      },
       "extends": [
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
@@ -15,12 +15,6 @@
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
       "rules": {
-        "@angular-eslint/component-max-inline-declarations": [
-          "error",
-          {
-            "template": 3
-          }
-        ],
         "@angular-eslint/no-host-metadata-property": "error",
         "@angular-eslint/no-input-rename": "error",
         "@angular-eslint/no-output-on-prefix": "error",
@@ -53,21 +47,38 @@
         "@typescript-eslint/explicit-function-return-type": [
           "error",
           {
-            "allowExpressions": true
+            "allowExpressions": true,
+            "allowTypedFunctionExpressions": true
           }
         ],
         "@typescript-eslint/explicit-member-accessibility": [
           "error",
           {
-            "accessibility": "explicit"
+            "accessibility": "explicit",
+            "ignoredMethodNames": [
+              "constructor",
+              "ngOnInit",
+              "ngOnChanges",
+              "ngAfterViewInit",
+              "ngOnDestroy"
+            ]
+          }
+        ],
+        "@typescript-eslint/naming-convention": [
+          "error",
+          {
+            "selector": "variableLike",
+            "format": ["strictCamelCase", "UPPER_CASE", "snake_case"],
+            "leadingUnderscore": "allowSingleOrDouble"
+          },
+          {
+            "selector": "typeLike",
+            "format": ["StrictPascalCase"]
           }
         ],
         "@typescript-eslint/no-explicit-any": "error",
         "@typescript-eslint/no-non-null-assertion": "error",
         "@typescript-eslint/no-unused-vars": "warn",
-        "@typescript-eslint/no-unsafe-assignment": "error",
-        "@typescript-eslint/no-unsafe-member-access": "error",
-        "@typescript-eslint/no-unsafe-call": "error",
         "@typescript-eslint/no-unsafe-return": "error",
         "@typescript-eslint/prefer-regexp-exec": "warn",
         "@typescript-eslint/prefer-includes": "warn",
@@ -78,10 +89,7 @@
         "no-magic-numbers": [
           "error",
           {
-            "ignore": [
-              0,
-              1
-            ],
+            "ignore": [0, 1],
             "ignoreArrayIndexes": true
           }
         ],
@@ -89,15 +97,43 @@
         "prefer-template": "error",
         "object-shorthand": "error",
         "array-callback-return": "error",
-        "eqeqeq": "error",
-        "no-console": "warn",
-        "no-unused-vars": "warn"
+        "no-useless-constructor": "off",
+        "complexity": ["warn", 10],
+        "no-unneeded-ternary": "error",
+        "no-unused-expressions": "error",
+        "no-extra-boolean-cast": "error",
+        "no-empty": "error",
+        "no-empty-function": [
+          "error",
+          {
+            "allow": ["constructors", "arrowFunctions"]
+          }
+        ],
+        "no-multiple-empty-lines": [
+          "error",
+          {
+            "max": 1,
+            "maxEOF": 1
+          }
+        ],
+        "no-console": [
+          "error",
+          {
+            "allow": ["warn", "error"]
+          }
+        ],
+        "no-unused-vars": [
+          "error",
+          {
+            "argsIgnorePattern": "^_",
+            "varsIgnorePattern": "^_"
+          }
+        ],
+        "comma-spacing": "error"
       }
     },
     {
-      "files": [
-        "*.html"
-      ],
+      "files": ["*.html"],
       "extends": [
         "plugin:@angular-eslint/template/recommended",
         "plugin:@angular-eslint/template/accessibility"
@@ -105,12 +141,8 @@
       "rules": {}
     },
     {
-      "files": [
-        "*.ts"
-      ],
-      "extends": [
-        "plugin:@ngrx/all-requiring-type-checking"
-      ]
+      "files": ["*.ts"],
+      "extends": ["plugin:@ngrx/all-requiring-type-checking"]
     }
   ]
 }
