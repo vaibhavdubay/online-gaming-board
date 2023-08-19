@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "online-gaming-board"
+  },
+  "targets": {
+    "online-gaming-board": {
+      "hosting": {
+        "online-gaming-board": [
+          "online-gaming-board"
+        ]
+      }
+    }
   }
 }

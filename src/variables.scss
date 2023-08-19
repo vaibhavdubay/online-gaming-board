@@ -1,0 +1,405 @@
+// Variables
+$screen-xs: 375px;
+$screen-sm: 576px;
+$screen-md: 768px;
+$screen-lg: 992px;
+$screen-xl: 1200px;
+$screen-xxl: 1440px;
+$screen-xxxl: 1920px;
+$screen-xxxxl: 2560px;
+
+// Variables
+$base-font-size: 16px;
+$base-line-height: 1.5;
+
+$font-family-heading: "TT Commons ExtraBold", sans-serif;
+$font-family-heading-alt: "TT Commons ExtraBold", sans-serif;
+$font-family-body: "TT Commons ExtraBold", sans-serif;
+$font-weight-bold: 500; // Using a numeric value for font weight
+$font-weight-normal: normal;
+
+$color-primary: #635bff;
+$color-secondary: #f7c52e;
+$color-accent: #00d165;
+$color-text: #333;
+
+$btn-border-color: $color-primary;
+$btn-color: $color-primary;
+$btn-bg-color: white;
+$btn-hover-bg-color: $color-primary;
+$btn-hover-color: white;
+
+$spacing-unit: 8px;
+
+$typography: (
+  h1: (
+    xs: (
+      20,
+      $font-family-heading,
+    ),
+    sm: (
+      24,
+      $font-family-heading,
+    ),
+    md: (
+      28,
+      $font-family-heading,
+    ),
+    lg: (
+      36,
+      $font-family-heading,
+    ),
+    xl: (
+      40,
+      $font-family-heading,
+    ),
+  ),
+  h2: (
+    xs: (
+      18,
+      $font-family-heading,
+    ),
+    sm: (
+      20,
+      $font-family-heading,
+    ),
+    md: (
+      24,
+      $font-family-heading,
+    ),
+    lg: (
+      30,
+      $font-family-heading,
+    ),
+    xl: (
+      36,
+      $font-family-heading,
+    ),
+  ),
+  h3: (
+    xs: (
+      16,
+      $font-family-heading,
+    ),
+    sm: (
+      18,
+      $font-family-heading,
+    ),
+    md: (
+      20,
+      $font-family-heading,
+    ),
+    lg: (
+      24,
+      $font-family-heading,
+    ),
+    xl: (
+      28,
+      $font-family-heading,
+    ),
+  ),
+  p: (
+    xs: (
+      14,
+      $font-family-body,
+    ),
+    sm: (
+      16,
+      $font-family-body,
+    ),
+    md: (
+      16,
+      $font-family-body,
+    ),
+    lg: (
+      18,
+      $font-family-body,
+    ),
+    xl: (
+      20,
+      $font-family-body,
+    ),
+  ),
+);
+
+// Functions
+@function rem($pixels) {
+  @return $pixels / $base-font-size;
+}
+
+@function space($value) {
+  @return $value * $spacing-unit;
+}
+
+// Mixins
+@mixin font-size($size) {
+  font-size: $size * 1px;
+}
+
+@mixin spacing($margin: 0, $padding: 0) {
+  margin: space($margin);
+  padding: space($padding);
+}
+
+@mixin container-styles($max-width, $padding) {
+  max-width: $max-width;
+  padding: space($padding);
+  margin: 0 auto;
+}
+
+@mixin respond-to($breakpoint) {
+  @media (min-width: map-get($breakpoints, $breakpoint)) {
+    @content;
+  }
+}
+
+// Media queries
+$breakpoints: (
+  xs: $screen-xxxl,
+  sm: $screen-sm,
+  md: $screen-md,
+  lg: $screen-lg,
+  xl: $screen-xl,
+);
+
+// Main styles
+:root {
+  font-size: calc(#{$base-font-size} * (#{$screen-xxxl} / 1920));
+}
+div,
+span,
+p {
+  font-family: $font-family-body;
+}
+body {
+  font-size: $base-font-size;
+  line-height: $base-line-height;
+  color: $color-text;
+  font-family: $font-family-body;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 0.5rem;
+  font-weight: $font-weight-bold;
+}
+
+a {
+  color: $color-primary;
+  text-decoration: none;
+}
+
+.btn {
+  display: inline-block;
+  padding: space(0.5) space(1);
+  border: 1px solid $color-primary;
+  color: $color-primary;
+  background-color: white;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+
+  &:hover {
+    background-color: $color-primary;
+    color: white;
+  }
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: space(0.5);
+  border: 1px solid #ccc;
+  border-radius: space(0.25);
+}
+
+// Typography adjustments
+@each $element, $sizes in $typography {
+  #{$element} {
+    @each $breakpoint, $size in $sizes {
+      @include respond-to($breakpoint) {
+        @include font-size(nth($size, 1));
+        font-family: nth($size, 2);
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@include respond-to(sm) {
+  h1 {
+    @include font-size(24);
+  }
+
+  h2 {
+    @include font-size(20);
+  }
+
+  h3 {
+    @include font-size(18);
+  }
+
+  p {
+    @include font-size(14);
+  }
+
+  .btn {
+    padding: space(0.25) space(0.75);
+  }
+}
+
+@include respond-to(xs) {
+  h1 {
+    @include font-size(22);
+  }
+
+  h2 {
+    @include font-size(18);
+  }
+
+  h3 {
+    @include font-size(16);
+  }
+
+  p {
+    @include font-size(14);
+  }
+
+  .btn {
+    padding: space(0.25) space(0.5);
+  }
+
+  .my-component {
+    padding: space(0.5);
+  }
+
+  .container {
+    @include container-styles($screen-xs, 0.5);
+  }
+}
+
+// Additional responsive adjustments for larger screens
+@include respond-to(lg) {
+  h1 {
+    @include font-size(36);
+  }
+
+  h2 {
+    @include font-size(30);
+  }
+
+  h3 {
+    @include font-size(24);
+  }
+
+  p {
+    @include font-size(18);
+  }
+
+  .btn {
+    padding: space(0.75) space(1.5);
+  }
+
+  .my-component {
+    padding: space(1);
+  }
+
+  .container {
+    @include container-styles($screen-lg, 1);
+  }
+}
+
+// Additional responsive adjustments for even larger screens
+@include respond-to(xl) {
+  h1 {
+    @include font-size(40);
+  }
+
+  h2 {
+    @include font-size(36);
+  }
+
+  h3 {
+    @include font-size(28);
+  }
+
+  p {
+    @include font-size(20);
+  }
+
+  .btn {
+    padding: space(1) space(2);
+  }
+
+  .my-component {
+    padding: space(1.5);
+  }
+
+  .container {
+    @include container-styles($screen-xl, 1.5);
+  }
+}
+
+// Additional responsive adjustments for extra large screens
+@include respond-to(2xl) {
+  h1 {
+    @include font-size(48);
+  }
+
+  h2 {
+    @include font-size(42);
+  }
+
+  h3 {
+    @include font-size(36);
+  }
+
+  p {
+    @include font-size(24);
+  }
+
+  .btn {
+    padding: space(1.5) space(3);
+  }
+
+  .my-component {
+    padding: space(2);
+  }
+
+  .container {
+    @include container-styles($screen-xxl, 2);
+  }
+}
+
+// Additional responsive adjustments for ultra large screens
+@include respond-to(3xl) {
+  h1 {
+    @include font-size(56);
+  }
+
+  h2 {
+    @include font-size(48);
+  }
+
+  h3 {
+    @include font-size(40);
+  }
+
+  p {
+    @include font-size(28);
+  }
+
+  .btn {
+    padding: space(2) space(4);
+  }
+
+  .my-component {
+    padding: space(2.5);
+  }
+
+  .container {
+    @include container-styles($screen-xxxl, 2.5);
+  }
+}

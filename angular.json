@@ -26,6 +26,7 @@
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
+              "bootstrap/dist/css/bootstrap.min.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -44,6 +45,11 @@
                   "maximumError": "4kb"
                 }
               ],
+              "buildOptimizer": true,
+              "vendorChunk": false,
+              "optimization": true,
+              "commonChunk": true,
+              "aot": true,
               "outputHashing": "all"
             },
             "development": {
@@ -93,6 +99,13 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
+          }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "version": 2,
+            "browserTarget": "online-gaming-board:build:production"
           }
         }
       }

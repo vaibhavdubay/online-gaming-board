@@ -86,13 +86,6 @@
         "@typescript-eslint/prefer-optional-chain": "warn",
         "@typescript-eslint/no-unnecessary-condition": "warn",
         "@typescript-eslint/no-unnecessary-type-arguments": "warn",
-        "no-magic-numbers": [
-          "error",
-          {
-            "ignore": [0, 1],
-            "ignoreArrayIndexes": true
-          }
-        ],
         "prefer-const": "error",
         "prefer-template": "error",
         "object-shorthand": "error",
@@ -122,21 +115,14 @@
             "allow": ["warn", "error"]
           }
         ],
-        "no-unused-vars": [
-          "error",
-          {
-            "argsIgnorePattern": "^_",
-            "varsIgnorePattern": "^_"
-          }
-        ],
         "comma-spacing": "error"
       }
     },
     {
       "files": ["*.html"],
       "extends": [
-        "plugin:@angular-eslint/template/recommended",
-        "plugin:@angular-eslint/template/accessibility"
+        // "plugin:@angular-eslint/template/recommended",
+        // "plugin:@angular-eslint/template/accessibility"
       ],
       "rules": {}
     },

@@ -3,21 +3,33 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'authenticate',
+    pathMatch: 'full',
+  },
+  {
+    path: 'authenticate',
+    loadChildren: () =>
+      import('./modules/authenticate/authenticate.module').then(
+        (module) => module.AuthenticateModule
+      ),
+  },
+  {
+    path: 'dashboard',
+    loadChildren: () =>
+      import('./modules/dashboard/dashboard.module').then(
+        (module) => module.DashboardModule
+      ),
+  },
+  {
     path: 'game',
-    children: [
-      {
-        path: 'chess-board',
-        loadChildren: () =>
-          import('./games/chess-board/chess-board.module').then(
-            (module) => module.ChessBoardModule
-          ),
-      },
-    ]
-  }
+    loadChildren: () =>
+      import('./games/games.module').then((module) => module.GamesModule),
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -12,17 +12,17 @@
         margin: 0;
         padding: 0;
       }
-      app-root div.container {
+      app-root > div.container {
         height: 100vh;
         display: grid;
         align-items: center;
         font-size: 1.5rem;
         justify-items: center;
       }
-      app-root div.container strong {
+      app-root > div.container strong {
         position: relative;
       }
-      app-root div.container strong::after {
+      app-root > div.container strong::after {
         animation: show_dots 2s infinite;
         position: absolute;
         margin-left: 5px;
@@ -44,10 +44,16 @@
         }
       }
     </style>
-      <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-</head>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+  </head>
   <body class="mat-typography">
     <app-root>
       <div class="container">
