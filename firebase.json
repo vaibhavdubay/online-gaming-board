@@ -2,11 +2,7 @@
   "hosting": [
     {
       "public": "public",
-      "ignore": [
-        "firebase.json",
-        "**/.*",
-        "**/node_modules/**"
-      ],
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [
         {
           "source": "**",
@@ -16,8 +12,14 @@
     },
     {
       "target": "online-gaming-board",
-      "source": ".",
-      "frameworksBackend": {}
+      "public": "dist/online-gaming-board",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
     }
   ]
 }
