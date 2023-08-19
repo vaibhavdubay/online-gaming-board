@@ -9,7 +9,7 @@ const routes: Routes = [
         path: 'chess-board',
         loadChildren: () =>
           import('./games/chess-board/chess-board.module').then(
-            ({ ChessBoardModule }) => ChessBoardModule
+            (module) => module.ChessBoardModule
           ),
       },
     ]
@@ -20,4 +20,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

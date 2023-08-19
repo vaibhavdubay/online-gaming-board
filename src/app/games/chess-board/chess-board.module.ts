@@ -7,6 +7,7 @@ import { StoreModule } from '@ngrx/store';
 import * as fromChessboard from './state/chessboard.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { ChessboardEffects } from './state/chessboard.effects';
+import { ChessBoardService } from './service/chess-board.service';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { ChessboardEffects } from './state/chessboard.effects';
     ChessBoardRoutingModule,
     StoreModule.forFeature(fromChessboard.chessboardsFeatureKey, fromChessboard.chessboardsFeature),
     EffectsModule.forFeature([ChessboardEffects]),
-  ]
+  ],
+  providers: [ChessBoardService]
 })
 export class ChessBoardModule { }
