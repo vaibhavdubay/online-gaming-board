@@ -1,1 +1,48 @@
-<p>chess-board works!</p>
+<div class="container">
+  <div class="d-inline-flex align-items-center player-info">
+    <div class="text-center">Current Player:</div>
+    <div
+      class="player-color"
+      [ngStyle]="{ 'background-color': currentPlayer }"
+    ></div>
+  </div>
+  <div class="board my-3">
+    <div *ngFor="let pieces of chessboard; let row = index" class="row m-0">
+      <div
+        *ngFor="let piece of pieces; let col = index"
+        #cols
+        class="col p-0 d-flex align-items-center justify-content-center chess-piece"
+        [ngStyle]="{
+          height: cols.offsetWidth + 'px',
+          'background-color': (row + col) % 2 === 0 ? '#adadad' : 'white',
+        }"
+        [class.possible-move]="
+          possibleMoves.includes(row.toString() + col) &&
+          piece.player !== selectedPiece?.piece?.player
+        "
+        (click)="
+          gameOver
+            ? null
+            : piece.id && piece.player === currentPlayer
+            ? selectPiece(row, col, piece)
+            : possibleMoves.includes(row.toString() + col) &&
+              placeMove(row, col)
+        "
+      >
+        {{ piece.key }}
+      </div>
+    </div>
+  </div>
+  <div class="row dead-pieces">
+    <div class="col-6 d-flex justify-content-start">
+      <ng-container *ngFor="let piece of deadPieces['white']">
+        {{ piece.key }}
+      </ng-container>
+    </div>
+    <div class="col-6 d-flex justify-content-end">
+      <ng-container *ngFor="let piece of deadPieces['black']">
+        {{ piece.key }}
+      </ng-container>
+    </div>
+  </div>
+</div>
